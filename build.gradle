@@ -56,7 +56,7 @@ repositories {
 
 dependencies {
     minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
-    implementation fg.deobf("dev.latvian.mods:kubejs-forge:2001.6.5-build.1")
+    implementation files('libs/kubejs-forge-2001.6.5-build.1.jar')
 }
 
 tasks.named('processResources', ProcessResources).configure {
