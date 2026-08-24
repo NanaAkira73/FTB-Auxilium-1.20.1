@@ -3,7 +3,8 @@ package dev.ftb.mods.ftbauxilium;
 import com.mojang.logging.LogUtils;
 import dev.ftb.mods.ftbauxilium.auxilium.StatManager;
 import dev.ftb.mods.ftbauxilium.screens.ScreenEvents;
-import dev.architectury.event.events.client.ClientGuiEvent;
+import net.minecraftforge.client.event.ScreenEvent;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
 import org.slf4j.Logger;
 
@@ -25,7 +26,11 @@ public class FTBAuxilium {
     public void init() {
         FTBAuxiliumConfig.init();
         STAT_MANAGER.init();
-        ClientGuiEvent.INIT_POST.register(ScreenEvents::loadOptOutButton);
+        MinecraftForge.EVENT_BUS.addListener(this::onScreenInit);
+    }
+
+    private void onScreenInit(ScreenEvent.Init.Post event) {
+        ScreenEvents.loadOptOutButton(event.getScreen(), event);
     }
 
     public static void runTask(Runnable task) {

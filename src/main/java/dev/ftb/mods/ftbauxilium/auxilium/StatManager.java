@@ -1,7 +1,5 @@
 package dev.ftb.mods.ftbauxilium.auxilium;
 
-import dev.architectury.event.events.client.ClientLifecycleEvent;
-import dev.architectury.event.events.client.ClientPlayerEvent;
 import dev.ftb.mods.ftbauxilium.FTBAuxilium;
 import dev.ftb.mods.ftbauxilium.FTBAuxiliumConfig;
 import dev.ftb.mods.ftbauxilium.tasks.LaunchTask;
@@ -9,6 +7,9 @@ import dev.ftb.mods.ftbauxilium.tasks.LevelExitTask;
 import dev.ftb.mods.ftbauxilium.tasks.LevelLoadTask;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.LocalPlayer;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.entity.player.PlayerEvent;
+import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 
 import java.io.File;
 import java.util.*;
@@ -49,22 +50,26 @@ public class StatManager {
         FTBAuxilium.LOGGER.debug("Starting stat system");
         packData = new ModpackData();
 
-        ClientLifecycleEvent.CLIENT_SETUP.register(this::clientLoaded);
-        ClientPlayerEvent.CLIENT_PLAYER_JOIN.register(this::worldLoaded);
-        ClientPlayerEvent.CLIENT_PLAYER_QUIT.register(this::onLevelExit);
+        MinecraftForge.EVENT_BUS.addListener(this::onClientSetup);
+        MinecraftForge.EVENT_BUS.addListener(this::worldLoaded);
+        MinecraftForge.EVENT_BUS.addListener(this::onLevelExit);
     }
 
-    private void clientLoaded(Minecraft mc) {
-        FTBAuxilium.runTask(new LaunchTask(mc, launcher));
+    private void onClientSetup(FMLClientSetupEvent event) {
+        FTBAuxilium.runTask(new LaunchTask(Minecraft.getInstance(), launcher));
     }
 
-    private void worldLoaded(LocalPlayer player) {
+    private void worldLoaded(PlayerEvent.PlayerLoggedInEvent event) {
         if (IDENTIFIER.isOptedOut() || !FTBAuxiliumConfig.isEnabled()) return;
-        Minecraft.getInstance().execute(() -> FTBAuxilium.runTask(new LevelLoadTask()));
+        if (event.getEntity() instanceof LocalPlayer) {
+            Minecraft.getInstance().execute(() -> FTBAuxilium.runTask(new LevelLoadTask()));
+        }
     }
 
-    private void onLevelExit(LocalPlayer player) {
-        FTBAuxilium.runTask(new LevelExitTask());
+    private void onLevelExit(PlayerEvent.PlayerLoggedOutEvent event) {
+        if (event.getEntity() instanceof LocalPlayer) {
+            FTBAuxilium.runTask(new LevelExitTask());
+        }
     }
 
     public Launchers findLauncher() {
