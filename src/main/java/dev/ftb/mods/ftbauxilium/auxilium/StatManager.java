@@ -55,7 +55,7 @@ public class StatManager {
     }
 
     private void clientLoaded(Minecraft mc) {
-        FTBAuxilium.runTask(new LaunchTask(mc, launcher));
+        mc.execute(() -> FTBAuxilium.runTask(new LaunchTask(mc, launcher)));
     }
 
     private void worldLoaded(LocalPlayer player) {

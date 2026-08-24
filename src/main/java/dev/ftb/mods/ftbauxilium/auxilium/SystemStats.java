@@ -60,7 +60,8 @@ public class SystemStats {
         }
         resourcePacks = packs.toString();
 
-        refreshRate = mc.getWindow().getRefreshRate();
+        // getRefreshRate() requires render thread - use 0 as default
+        refreshRate = 0;
     }
 
     @Override
