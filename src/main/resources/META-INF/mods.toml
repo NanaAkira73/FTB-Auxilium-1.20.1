@@ -1,0 +1,12 @@
+modLoader="javafml"
+loaderVersion="[47,)"
+license="All Rights Reserved"
+
+[[mods]]
+modId="ftbauxilium"
+version="2001.1.0"
+displayName="FTB Auxilium"
+authors="FTB Team"
+description='''
+FTB Auxilium - Ported to 1.20.1
+'''

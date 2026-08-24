@@ -1,0 +1,23 @@
+name: Build
+
+on:
+  push:
+    branches: [ "main", "1.20.1" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+      - name: Build
+        run: |
+          chmod +x gradlew
+          ./gradlew build --no-daemon
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ftbauxilium-forge-1.20.1
+          path: build/libs/*.jar
