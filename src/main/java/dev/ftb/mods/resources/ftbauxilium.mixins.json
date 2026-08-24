@@ -1,0 +1,12 @@
+{
+    "required": true,
+    "package": "dev.ftb.mods.ftbauxilium.mixins",
+    "compatibilityLevel": "JAVA_17",
+    "refmap": "ftbauxilium.refmap.json",
+    "client": [
+        "CrashMixin"
+    ],
+    "injectors": {
+        "defaultRequire": 1
+    }
+}
