@@ -66,10 +66,10 @@ public class SystemStats {
     @Override
     public String toString() {
         return "SystemStats{" +
-            "javaVersion='" + javaVersion + ''' +
+            "javaVersion='" + javaVersion + '\'' +
             ", cpuCores=" + cpuCores +
             ", memoryMax=" + memoryMax +
-            ", operatingSystem='" + operatingSystem + ''' +
+            ", operatingSystem='" + operatingSystem + '\'' +
             '}';
     }
 }
