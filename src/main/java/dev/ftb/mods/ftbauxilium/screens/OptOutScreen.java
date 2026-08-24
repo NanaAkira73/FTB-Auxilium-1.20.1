@@ -65,19 +65,19 @@ public class OptOutScreen extends Screen {
         int alignX = this.width / 2;
         int alignY = 20;
 
-        drawCenteredString(graphics, font, Component.translatable("ftbauxilium.heading-what-is"), alignX, alignY, 0xFFFFFF);
+        graphics.drawCenteredString(font, Component.translatable("ftbauxilium.heading-what-is"), alignX, alignY, 0xFFFFFF);
         alignY += 15;
-        drawCenteredString(graphics, font, Component.translatable("ftbauxilium.what-is"), alignX, alignY, 0xBBBBBB);
+        graphics.drawCenteredString(font, Component.translatable("ftbauxilium.what-is"), alignX, alignY, 0xBBBBBB);
         alignY += 25;
-        drawCenteredString(graphics, font, Component.translatable("ftbauxilium.heading-what-info"), alignX, alignY, 0xFFFFFF);
+        graphics.drawCenteredString(font, Component.translatable("ftbauxilium.heading-what-info"), alignX, alignY, 0xFFFFFF);
         alignY += 15;
-        drawCenteredString(graphics, font, Component.translatable("ftbauxilium.what-info"), alignX, alignY, 0xBBBBBB);
+        graphics.drawCenteredString(font, Component.translatable("ftbauxilium.what-info"), alignX, alignY, 0xBBBBBB);
         alignY += 25;
-        drawCenteredString(graphics, font, Component.translatable(
+        graphics.drawCenteredString(font, Component.translatable(
             FTBAuxilium.STAT_MANAGER.IDENTIFIER.isOptedOut() ? "ftbauxilium.heading-opt-in" : "ftbauxilium.heading-opt-out"
         ), alignX, alignY, 0xFFFFFF);
         alignY += 15;
-        drawCenteredString(graphics, font, Component.translatable(
+        graphics.drawCenteredString(font, Component.translatable(
             FTBAuxilium.STAT_MANAGER.IDENTIFIER.isOptedOut() ? "ftbauxilium.opt-in" : "ftbauxilium.opt-out"
         ), alignX, alignY, 0xBBBBBB);
     }
