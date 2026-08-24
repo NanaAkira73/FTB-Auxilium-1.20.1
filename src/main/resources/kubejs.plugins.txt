@@ -1,2 +1,1 @@
-# KubeJS integration is handled via reflection in FTBAuxiliumKubeJSPlugin.init()
-# No compile-time KubeJS dependency needed
+dev.ftb.mods.ftbauxilium.integration.FTBAuxiliumKubeJSPlugin client kubejs

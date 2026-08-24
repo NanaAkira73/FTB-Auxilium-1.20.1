@@ -40,6 +40,9 @@ minecraft {
 }
 
 repositories {
+    flatDir {
+        dirs 'libs'
+    }
     maven {
         url "https://maven.architectury.dev/"
     }
@@ -53,10 +56,7 @@ repositories {
 
 dependencies {
     minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
-    compileOnly fg.deobf("dev.latvian.mods:rhino-forge:2001.2.2-build.17")
-    compileOnly fg.deobf("dev.architectury:architectury-forge:9.1.12")
-    runtimeOnly fg.deobf("dev.latvian.mods:rhino-forge:2001.2.2-build.17")
-    runtimeOnly fg.deobf("dev.architectury:architectury-forge:9.1.12")
+    implementation fg.deobf("dev.latvian.mods:kubejs-forge:2001.6.5-build.1")
 }
 
 tasks.named('processResources', ProcessResources).configure {

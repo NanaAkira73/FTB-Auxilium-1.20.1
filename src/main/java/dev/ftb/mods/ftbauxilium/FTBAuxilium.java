@@ -1,7 +1,6 @@
 package dev.ftb.mods.ftbauxilium;
 
 import com.mojang.logging.LogUtils;
-import dev.ftb.mods.ftbauxilium.integration.FTBAuxiliumKubeJSPlugin;
 import net.minecraftforge.fml.common.Mod;
 import org.slf4j.Logger;
 
@@ -12,6 +11,5 @@ public class FTBAuxilium {
 
     public FTBAuxilium() {
         LOGGER.info("FTB Auxilium loaded");
-        FTBAuxiliumKubeJSPlugin.init();
     }
 }
